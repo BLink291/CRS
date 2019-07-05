@@ -17,6 +17,7 @@ class LoginForm( forms.Form ):
     username = forms.CharField(label=_('Username'))
     password = forms.CharField( widget=forms.PasswordInput, label=_('Password') )
 
+    user_cache = None
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -27,6 +28,14 @@ class LoginForm( forms.Form ):
     
     def clean_username(self):
         username = self.cleaned_data['username']
+        user = User.objects.filter(username=username).first()
+        if not user:
+            raise ValidationError(_('You entered an invalid username.'))
+
+        if not user.is_active:
+            raise ValidationError(_('This account is not active.'))
+
+        self.user_cache = user
         return username
 
 

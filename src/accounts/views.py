@@ -37,16 +37,9 @@ class GuestView(View):
 class LoginView(GuestView, FormView ):
     template_name = 'accounts/login.html'
     form_class = LoginForm
-    @method_decorator(sensitive_post_parameters('password'))
-    @method_decorator(csrf_protect)
-    @method_decorator(never_cache)
-
     def form_valid(self, form):
-        login(self.request, form.get_user())
-        return super(LoginView, self).form_valid(form)
-    
-    def get_success_url(self):
-        return redirect(settings.LOGIN_REDIRECT_URL)
+        login(self.request, form.user_cache )
+        return redirect('accounts:index')
 
 
 class LogOutView(LoginRequiredMixin, LogoutView):
@@ -91,7 +84,7 @@ class RegisterationView( GuestView, FormView ):
 class ActivateView(View):
     @staticmethod
     def get(request, code):
-        act = get_object_or_404(Activate, code=code)
+        act = get_object_or_404(Activate, secret_key=code)
 
         # Activate profile
         user = act.user
