@@ -1,0 +1,3 @@
+ To Verify your account,  click the bellow link:
+ 
+{{ uri }}

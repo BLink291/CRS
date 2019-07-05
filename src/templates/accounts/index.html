@@ -1,0 +1,15 @@
+{% extends "accounts/base.html" %}
+
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+
+        <p>Welcome <b>{{ request.user.username }}</b>.
+
+    {% else %}
+
+        Welcome guest.
+
+    {% endif %}
+
+{% endblock %}

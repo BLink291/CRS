@@ -15,3 +15,11 @@ activate environment
         source env/bin/activate 
     windows
         env\scripts\activate
+
+
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+python manage.py migrate --run-syncdb
