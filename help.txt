@@ -1,22 +1,23 @@
-after cloning make virtual environment inside CRS directory
-always work on virtual environment :      
+* after cloning the repository
+* make virtual environment inside CRS directory
     # macOS/Linux
         sudo apt-get install python3-venv    # If needed
         python3 -m venv env
-
     # Windows
         python -m venv env
 
-install requirements 
-    python -m pip install -r requirements.txt
 
-activate environment
+* activate environment
     (Linux/macOS) 
         source env/bin/activate 
     windows
         env\scripts\activate
 
+* install requirements in your virtual environment
+    python -m pip install -r requirements.txt
 
+
+now change directory to src to run django commands
 
 python manage.py makemigrations
 
