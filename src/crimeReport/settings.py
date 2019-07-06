@@ -31,6 +31,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #Local apps
+    'users.apps.UsersConfig',
+    'pages.apps.PagesConfig',
+    'articles.apps.ArticlesConfig',
+
+    #3-rd party apps
+    'crispy_forms',     #crispy_froms installed
+
+    #default apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +63,7 @@ ROOT_URLCONF = 'crimeReport.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],    #adding the project level templates directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -118,3 +127,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+#Additions by Devs
+
+#CustomUser extends Abstract User
+AUTH_USER_MODEL = 'users.CustomUser'
+
+#current TIME_ZONE 
+TIME_ZONE = 'Asia/Calcutta'
+
+#redirect users to home when login or logout event occurs
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
+#define crispy bootstrap version 4
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
