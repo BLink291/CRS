@@ -78,8 +78,10 @@ class RegisterationView( GuestView, FormView ):
             login( request, user)
 
             messages.success(request, _('Successfully Registered!'))
+            return redirect('accounts:index')
 
-        return redirect('accounts:index')
+
+        return redirect('accounts:log_in')
 
 class ActivateView(View):
     @staticmethod

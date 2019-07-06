@@ -24,3 +24,11 @@ python manage.py makemigrations
 python manage.py migrate
 
 python manage.py migrate --run-syncdb
+
+
+
+
+*To activate two steps authentication in crimeReport/settings.py    set 
+ENABLE_TWO_STEPS_REGISTRATION = True
+ENABLE_USER_ACTIVATION  = True
+ 

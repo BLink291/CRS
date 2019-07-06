@@ -132,7 +132,7 @@ LOCALE_PATHS = [
 LOGIN_URL = 'accounts:log_in'
 LOGIN_REDIRECT_URL = 'accounts/index.html'
 
-ENABLE_TWO_STEPS_REGISTRATION =True
-ENABLE_USER_ACTIVATION = True
+ENABLE_TWO_STEPS_REGISTRATION =False
+ENABLE_USER_ACTIVATION = False
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'

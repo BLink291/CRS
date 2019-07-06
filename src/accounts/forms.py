@@ -33,7 +33,7 @@ class LoginForm( forms.Form ):
             raise ValidationError(_('You entered an invalid username.'))
 
         if not user.is_active:
-            raise ValidationError(_('This account is not active.'))
+            raise ValidationError(_('Please verify your account first.'))
 
         self.user_cache = user
         return username
@@ -44,7 +44,7 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
     
-    email = forms.EmailField(label=_('Email'), help_text=_('Please type email to get an account activation mail'))
+    email = forms.EmailField(label=_('Email'))
 
     def clean_email(self):
         email = self.cleaned_data['email']
