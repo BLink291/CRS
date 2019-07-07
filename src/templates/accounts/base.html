@@ -57,6 +57,8 @@
                 
                     
                                <a class="nav-link" href="#">Contact</a>
+                                <a class="nav-link mr-auto-right" href="#"  >{{ request.user.username}} </a>
+                               <a class="nav-link mr-auto-right" href="{% url 'accounts:log_out' %}">Log Out</a>
                   
                         {% else %}
                             <a class="nav-link" href="{% url 'accounts:index' %}">Home</a>        
