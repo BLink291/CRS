@@ -59,11 +59,7 @@ ROOT_URLCONF = 'crimeReport.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
-        'DIRS': [TEMPLATE_DIR, ],
-=======
         'DIRS': [os.path.join(BASE_DIR, 'templates')],    #adding the project level templates directory
->>>>>>> articlesApp
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
