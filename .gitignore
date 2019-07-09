@@ -53,8 +53,10 @@ coverage.xml
 
 # Django stuff:
 *.log
+crimeReport/settings.py
+crimeReport/urls.py
 local_settings.py
-#db.sqlite3 #database
+db.sqlite3 #database
 
 # Flask stuff:
 instance/
