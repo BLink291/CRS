@@ -18,8 +18,6 @@ from django.urls import path, include
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
-    path('', IndexPageView.as_view(), name = 'index'),
-
     path('admin/', admin.site.urls),
     path('articles/', include('articles.urls')),
     path('users/', include('users.urls')),
