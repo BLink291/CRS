@@ -53,6 +53,7 @@ coverage.xml
 
 # Django stuff:
 *.log
+crimeReport/urls.py
 local_settings.py
 crimeReport/settings.py
 db.sqlite3
