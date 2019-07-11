@@ -34,7 +34,7 @@ def test_view_url_by_name(self):
 def test_view_uses_correct_template(self):
     response = self.client.get(reverse('signup'))
     self.assertEqual(response.status_code, 200)
-    self.assertTemplateUsed(response, 'signup.html')
+    self.assertTemplateUsed(response, 'users/signup.html')
 
 def test_signup_form(self):
     new_user = get_user_model().objects.create_user(self.username, self.email)

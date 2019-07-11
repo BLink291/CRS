@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.urls import reverse
-
+from django.utils.translation import ugettext as _
 # Create your models here.
 
 class Article(models.Model):
@@ -13,6 +13,8 @@ class Article(models.Model):
         get_user_model(),
         on_delete=models.CASCADE,
     )
+    lat = models.DecimalField(_('Latitude'), max_digits=22, decimal_places=16, blank=True, null=True)
+    lng = models.DecimalField(_('Longitude'), max_digits=22, decimal_places=16, blank=True, null=True)
 
     def __str__(self):
         return self.title

@@ -26,9 +26,11 @@ python manage.py migrate
 python manage.py migrate --run-syncdb
 
 
-
-
 *To activate two steps authentication in crimeReport/settings.py    set 
 ENABLE_TWO_STEPS_REGISTRATION = True
 ENABLE_USER_ACTIVATION  = True
  
+
+*HERE maps API keys
+JAVASCRIPT: api_key = 'LIOSKTN4bf_JCXxvSpldWYd4DlWjLs8RqgRIGoTY0wY'
+REST: app_id = '89830swK4GSvjUjZgOx0', app_code = '-HlwoCG7kcPQrgzXxglL7A'
