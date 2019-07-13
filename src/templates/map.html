@@ -17,22 +17,24 @@
   <div style="width: 640px; height: 480px" id="mapContainer"></div>
   <script type="text/javascript" charset="utf-8">
 
-function addDragMarker(map, behaviour)  {
+function addDraggableMarker(map, behavior)  {
   
   var marker = new H.map.Marker({lat:20.5937, lng:78.9629 }, {
     //marking object as volatile for dragging
     volatility: true
+    
   });
   //ensuring marker is able to receive drag events
-  marker.draggable = true;
   map.addObject(marker);
+  marker.draggable = true;
+  
 
   //make underlying map undraggable when marker is dragged
 
   map.addEventListener('dragstart', function(evnt) {
     var target = evnt.target;
     if(target instanceof H.map.Marker)  {
-      behaviour.disable();
+      behavior.disable();
     }
   }, false);
 
@@ -40,7 +42,7 @@ function addDragMarker(map, behaviour)  {
   map.addEventListener("dragend", function(evnt) {
     var target = evnt.target;
     if (target instanceof H.map.Marker) {
-      behaviour.enable();
+      behavior.enable();
     } 
   }, false);
 
@@ -52,9 +54,14 @@ function addDragMarker(map, behaviour)  {
       target.setGeometry(map.screenToGeo(pointer.viewportX, pointer.viewportY))
     }
   }, false);
+
+
+  var lat = marker.getPosition().lat;
+  var lng = marker.getPosition().lng;
+  
 }
-
-
+/*
+*/
     // Initialize the platform object:
     var platform = new H.service.Platform({
     'apikey': 'LIOSKTN4bf_JCXxvSpldWYd4DlWjLs8RqgRIGoTY0wY'
@@ -74,6 +81,7 @@ function addDragMarker(map, behaviour)  {
       zoom: 4.3,
       center: { lng: 78.9629, lat: 20.5937 }
     });
+    
 
     var bubble = new H.ui.InfoBubble({ lng: 78.9629, lat: 20.5937 }, {
       content: '<b>Hello {{ user.username }}! Drop me on crimeScene</b>'
@@ -97,7 +105,8 @@ function addDragMarker(map, behaviour)  {
     scalebar.setAlignment('top-left');
 
     //Add the click event Listener
-    addDragMarker(map, behaviour);
+    addDraggableMarker(map, behavior);
+    
     
   </script>
 
