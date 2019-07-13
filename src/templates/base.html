@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,
-    initial-scale=1, shrink-to-fit=no">
+        initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -16,14 +16,19 @@
     <title>{% block title %}crimeReport App{% endblock title %}</title>
 </head>
 <body>
+    <!--Navigation bar displayd with bootstrap-->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
     <a class="navbar-brand" href="{% url 'home' %}">crimeReport</a>
     
+
+    <!--Display new button when user is logged in-->
     {% if user.is_authenticated %}
         <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a href="{% url 'article_new' %}">+New</a></li>
         </ul>
     {% endif %}
+
+    <!--User drop down menu-->
     <button class="navbar-toggler" type="button" data-toggle="collapse"
     data-target="#navbarCollapse" aria-controls="navbarCollapse"
     aria-expanded="false" aria-label="Toggle navigation">
@@ -59,11 +64,15 @@
         {% endif %}
         </div>s
     </nav>
+
+    <!--Body provided by other child templates-->
     <div class="container">
         {% block content %} {% endblock content %}
     </div>
     <br>
+
     {% block body %}  {% endblock body %}
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -71,7 +80,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <div id="mapContainer">
-        {% block map_scripts %}  {% endblock map_scripts %}
-    </div>
+
+    <!--Scripts added by child templates-->
+    {% block map_scripts %}  {% endblock map_scripts %}
 </body>
 </html>
