@@ -14,7 +14,9 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
+STATIC_DIR = os.path.join(BASE_DIR,'static')
+MEDIA_DIR = os.path.join(BASE_DIR,'media')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -32,12 +34,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     #Local apps
-    'users.apps.UsersConfig',
-    'pages.apps.PagesConfig',
-    'articles.apps.ArticlesConfig',
-
-    #3-rd party apps
-    'crispy_forms',     #crispy_froms installed
+    'articles',
+    'accounts',
+    'bootstrap3',
 
     #default apps
     'django.contrib.admin',
@@ -63,7 +62,7 @@ ROOT_URLCONF = 'crimeReport.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],    #adding the project level templates directory
+        'DIRS': [ TEMPLATE_DIR, ],    #adding the project level templates directory
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -114,7 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Calcutta'
 
 USE_I18N = True
 
@@ -123,24 +122,35 @@ USE_L10N = True
 USE_TZ = True
 
 
+#  Mail settings
+#
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'amitrawat192291@gmail.com'
+EMAIL_HOST_PASSWORD = 'vxpykxkvypvlnoxw'
+EMAIL_PORT = 587
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [STATIC_DIR,]
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
+LOGIN_URL = 'accounts:log_in'
+LOGIN_REDIRECT_URL = 'accounts/index.html'
+
+ENABLE_TWO_STEPS_REGISTRATION =False
+ENABLE_USER_ACTIVATION = False
 
 
-#Additions by Devs
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
-#CustomUser extends Abstract User
-AUTH_USER_MODEL = 'users.CustomUser'
-
-#current TIME_ZONE 
-TIME_ZONE = 'Asia/Calcutta'
-
-#redirect users to home when login or logout event occurs
-
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
 
 #define crispy bootstrap version 4
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
