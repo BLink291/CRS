@@ -18,16 +18,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.urls import path, include
-from accounts.views import IndexPageView
 
+from accounts.views import IndexPageView
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('articles/', include('articles.urls')),
     path('accounts/', include('accounts.urls')),
-
-    path('', IndexPageView.as_view(), name = 'index'),
+    path('', IndexPageView.as_view(), name='index'),
 
     path('map/', TemplateView.as_view(template_name='map.html')),
 

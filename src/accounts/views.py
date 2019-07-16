@@ -24,7 +24,7 @@ from .models import Activate
 # Create your views here.
 
 class IndexPageView(TemplateView):
-    template_name = 'accounts/index.html'
+    template_name = 'index.html'
 
 
 class GuestView(View):
@@ -39,7 +39,7 @@ class LoginView(GuestView, FormView ):
     form_class = LoginForm
     def form_valid(self, form):
         login(self.request, form.user_cache )
-        return redirect('accounts:index')
+        return redirect(settings.LOGIN_REDIRECT_URL)
 
 
 class LogOutView(LoginRequiredMixin, LogoutView):
@@ -78,7 +78,7 @@ class RegisterationView( GuestView, FormView ):
             login( request, user)
 
             messages.success(request, _('Successfully Registered!'))
-            return redirect('accounts:index')
+            return redirect('articles:index')
 
 
         return redirect('accounts:log_in')

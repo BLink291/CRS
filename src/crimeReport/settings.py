@@ -142,8 +142,8 @@ MEDIA_URL = '/media/'
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')
 ]
-LOGIN_URL = 'accounts:log_in'
-LOGIN_REDIRECT_URL = 'accounts/index.html'
+LOGIN_URL = 'log_in'
+LOGIN_REDIRECT_URL = 'index'
 
 ENABLE_TWO_STEPS_REGISTRATION =False
 ENABLE_USER_ACTIVATION = False

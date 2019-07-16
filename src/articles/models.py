@@ -7,9 +7,11 @@ from django.utils.translation import ugettext as _
 # Create your models here.
 
 class Article(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255 )
+    slug = models.SlugField(max_length= 255, unique_for_date = 'created')
     body = models.TextField()
-    date = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now= True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     lat = models.DecimalField(_('Latitude'), max_digits=22, decimal_places=16, blank=True, null=True)
@@ -19,4 +21,8 @@ class Article(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('article_detail', args=[str(self.id)])
+        return reverse('articles:article_detail', 
+                            args=[ self.created.year,
+                            self.created.month,
+                            self.created.day, 
+                            self.slug])
