@@ -53,9 +53,6 @@ coverage.xml
 
 # Django stuff:
 *.log
-src/crimeReport/urls.py
-local_settings.py
-src/crimeReport/settings.py
 src/db.sqlite3
 
 # Flask stuff:
