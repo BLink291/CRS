@@ -20,6 +20,5 @@ urlpatterns = [
     path('new/', ArticleCreateView.as_view(), name='article_new'),
     
     path('', ArticleListView.as_view(), name='article_list'),
-    
-    
+
 ]
