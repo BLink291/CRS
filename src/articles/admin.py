@@ -6,7 +6,7 @@ from .models import Article
 
 @admin.register(Article)
 class	ArticleAdmin(admin.ModelAdmin):
-    list_display	=	('title',	'slug',	'author' )
+    list_display	=	('title',	'slug',	'author', 'created' )
     list_filter	    =	('created', )
     search_fields	=	('title',	'body')
     prepopulated_fields	=	{'slug':	('title',) }				

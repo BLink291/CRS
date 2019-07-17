@@ -43,7 +43,7 @@ class LoginView(GuestView, FormView ):
 
 
 class LogOutView(LoginRequiredMixin, LogoutView):
-    template_name = settings.LOGIN_REDIRECT_URL
+    template_name = 'index.html'
 
 class RegisterationView( GuestView, FormView ):
     template_name = 'accounts/registration.html'
@@ -78,7 +78,7 @@ class RegisterationView( GuestView, FormView ):
             login( request, user)
 
             messages.success(request, _('Successfully Registered!'))
-            return redirect('articles:index')
+            return redirect('index')
 
 
         return redirect('accounts:log_in')

@@ -22,7 +22,7 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return reverse('articles:article_detail', 
-                            args=[ self.created.year,
+                    args=[ self.created.year,
                             self.created.month,
                             self.created.day, 
                             self.slug])

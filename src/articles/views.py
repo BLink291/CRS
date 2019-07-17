@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 from django.urls import reverse_lazy
@@ -17,9 +17,15 @@ class ArticleCreateView(CreateView):
     template_name = 'articlesApp/article_new.html'
     fields = ('title', 'body', 'author','lat', 'lng')
 
-class ArticleDetailView(DetailView):
-    model = Article
-    fields = ('title', 'body')
+
+def post_detail(request, year,month, day, post):
+    article  = get_object_or_404(Article,slug=post,
+                    created__year=year,
+                    created__month=month,
+                    created__day=day)
+    return render (request, 
+            'articlesApp/article_detail.html',
+                {'post' : article})
 
 class ArticleUpdateView(UpdateView):
     model = Article

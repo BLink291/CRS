@@ -4,12 +4,10 @@
 {% block content %}
 
 <div class="article-entry">
-    <h2>{{ object.title }}</h2>
-        <p>by {{ object.author }} | {{ object.date }}</p>
-        <p>{{ object.body }}</p>
+    <h2>{{ post.title }}</h2>
+        <p>by {{ post.author }} | {{ post.created }}</p>
+        <p>{{ post.body }}</p>
 </div>
-<p><a href="{% url 'article_edit' article.pk %}">Edit</a>
-<a href="{% url 'article_delete' article.pk %}">Delete</a></p>
-<p>Back to <a href="{% url 'article_list' %}">All Articles</a>.</p>
+<p>Back to <a href="">All Articles</a>.</p>
 
 {% endblock content %}
