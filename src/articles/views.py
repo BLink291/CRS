@@ -23,7 +23,7 @@ class ArticleCreateView(LoginRequiredMixin ,CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title) 
-        response = super().form_valid(form)
+        response = super(ArticleCreateView, self).form_valid(form)
         return response
     
     success_url = '/articles'

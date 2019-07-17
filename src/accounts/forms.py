@@ -43,7 +43,17 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
-    
+        help_texts = {
+            'username' : 'You can use letters, numbers ',
+            }
+
+    def __init__(self, *args, **kwargs):
+        super(RegisterForm, self).__init__(*args, **kwargs)
+
+        for fieldname in [ 'password1', 'password2']:
+            self.fields[fieldname].help_text = None
+
+       
     email = forms.EmailField(label=_('Email'))
 
     def clean_email(self):
