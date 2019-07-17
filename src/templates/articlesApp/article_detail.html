@@ -8,6 +8,6 @@
         <p>by {{ post.author }} | {{ post.created }}</p>
         <p>{{ post.body }}</p>
 </div>
-<p>Back to <a href="">All Articles</a>.</p>
+<p>Back to <a href="{% url 'articles:list' %}">All Articles</a>.</p>
 
 {% endblock content %}

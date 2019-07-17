@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils.text import slugify
+
 from django.urls import reverse_lazy
 from .models import Article
 # Create your views here.
@@ -12,20 +15,28 @@ class ArticleListView(ListView):
     paginate_by = 3
     template_name = 'articlesApp/article_list.html'
 
-class ArticleCreateView(CreateView):
+class ArticleCreateView(LoginRequiredMixin ,CreateView):
     model = Article
     template_name = 'articlesApp/article_new.html'
-    fields = ('title', 'body', 'author','lat', 'lng')
 
+    fields = ('title', 'body')
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.slug = slugify(form.instance.title) 
+        response = super().form_valid(form)
+        return response
+    
+    success_url = '/articles'
 
-def post_detail(request, year,month, day, post):
-    article  = get_object_or_404(Article,slug=post,
-                    created__year=year,
-                    created__month=month,
-                    created__day=day)
-    return render (request, 
-            'articlesApp/article_detail.html',
-                {'post' : article})
+class ArticleDetailView():
+    def post_detail(request, year,month, day, post):
+        article  = get_object_or_404(Article,slug=post,
+                                        created__year=year,
+                                        created__month=month,
+                                        created__day=day)
+        return render (request, 
+                'articlesApp/article_detail.html',
+                    {'post' : article})
 
 class ArticleUpdateView(UpdateView):
     model = Article
