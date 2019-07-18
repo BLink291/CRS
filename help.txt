@@ -34,3 +34,9 @@ ENABLE_USER_ACTIVATION  = True
 *HERE maps API keys
 JAVASCRIPT: api_key = 'LIOSKTN4bf_JCXxvSpldWYd4DlWjLs8RqgRIGoTY0wY'
 REST: app_id = '89830swK4GSvjUjZgOx0', app_code = '-HlwoCG7kcPQrgzXxglL7A'
+
+
+
+Google Maps API
+Server  key :  AIzaSyBlSqCGlduCWgxoER7ZBcYxlnGJm8k1KpE
+browser key: AIzaSyBSAgNMnOf-64DGlw7MWshqeyw497UeV4I
