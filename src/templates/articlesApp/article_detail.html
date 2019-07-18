@@ -1,5 +1,18 @@
 <!-- templates/article_detail.html -->
+
+
 {% extends 'base.html' %}
+{%load static%}
+{% block extrahead %}
+<script type="text/javascript">
+         
+         var latVal = parseFloat('{{post.lat}}');
+         var lngVal = parseFloat('{{post.lng}}');
+         var postTitle = '{{post.title}}';
+         
+    </script>
+
+{% endblock %}
 
 {% block content %}
 
@@ -7,7 +20,17 @@
     <h2>{{ post.title }}</h2>
         <p>by {{ post.author }} | {{ post.created }}</p>
         <p>{{ post.body }}</p>
+        <div id="sample" style="width:580px; height:400px;"></div>
+
 </div>
 <p>Back to <a href="{% url 'articles:list' %}">All Articles</a>.</p>
 
 {% endblock content %}
+
+{% block footer_javascript_page %}
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSAgNMnOf-64DGlw7MWshqeyw497UeV4I&callback=initMap"
+    async defer></script>
+<script language="JavaScript" type="text/javascript" src="{% static 'js/post_details_map.js' %}"></script>
+
+{% endblock footer_javascript_page %}

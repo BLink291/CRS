@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        {% block extrahead %}{% endblock %}
 
         <meta charset="utf-8">
 
@@ -82,12 +83,14 @@
     {% bootstrap_messages %}
 
     {% block content %}
-        No content.
+
     {% endblock %}
 
 </div>
 
+{% block footer_javascript_page %}
 
+{% endblock footer_javascript_page %}
 
 </body>
 </html>

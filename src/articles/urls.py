@@ -4,8 +4,8 @@ from .views import (
     ArticleUpdateView,
     ArticleDeleteView,
     ArticleCreateView,
+    ArticleDetailView
 )
-from .views import ArticleDetailView 
 
 app_name = 'articles'
 urlpatterns = [
@@ -15,7 +15,7 @@ urlpatterns = [
     path('<int:year>/<int:month>/<int:day>/<slug:post>/',
         ArticleDetailView.post_detail, name='article_detail'), 
 
-    path('new/', ArticleCreateView.as_view(), name='article_new'),
+    path('new/',ArticleCreateView.as_view(), name='article_new'),
     
 
 ]

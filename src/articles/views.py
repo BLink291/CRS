@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from .models import Article
 # Create your views here.
 
+from .forms import NewPostForm
 
 class ArticleListView(ListView):
     model = Article
@@ -15,11 +16,12 @@ class ArticleListView(ListView):
     paginate_by = 3
     template_name = 'articlesApp/article_list.html'
 
+
 class ArticleCreateView(LoginRequiredMixin ,CreateView):
     model = Article
     template_name = 'articlesApp/article_new.html'
+    form_class = NewPostForm
 
-    fields = ('title', 'body')
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.slug = slugify(form.instance.title) 
@@ -34,8 +36,7 @@ class ArticleDetailView():
                                         created__year=year,
                                         created__month=month,
                                         created__day=day)
-        return render (request, 
-                'articlesApp/article_detail.html',
+        return render (request,'articlesApp/article_detail.html',
                     {'post' : article})
 
 class ArticleUpdateView(UpdateView):

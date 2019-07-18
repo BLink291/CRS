@@ -1,18 +1,26 @@
 <!-- templates/article_new.html -->
 
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
     <h1>New article</h1>
-    <form action="" method="post">{% csrf_token %}
+    <div class="container"></div>
+    <form id ="mapform" action="" method="post">
+        {% csrf_token %}
         {{ form.as_p }}
         <button class="btn btn-success ml-2" type="submit">Save</button>
     </form>
-
+    <h2>Select Location of Incident on the map below: </h2>
+    <div id="sample" style="width:580px; height:400px;"></div>
+    <script>
+    
+        </script>
 {% endblock content %}
 
-{% block body %}    
-    <p>Please mark location on map</p>
-    <br>
-    {% include 'map.html' %}
-{% endblock body %}
+{% block footer_javascript_page %}
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSAgNMnOf-64DGlw7MWshqeyw497UeV4I&callback=initMap"
+    async defer></script>
+<script language="JavaScript" type="text/javascript" src="{% static 'js/post_map.js' %}"></script>
+
+{% endblock footer_javascript_page %}
