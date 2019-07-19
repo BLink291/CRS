@@ -8,10 +8,7 @@
     {% for article in articles %}
         <div class="card">
             <div class="card-header">
-                <span class="font-weight-bold">{{ article.title }}</span> &middot;
-               
-                <span class="text-muted">by {{ article.author}}
-                </span>
+                <span class="font-weight-bold">{{ article.title }}</span>.
             </div>
         <div class="card-body">
             {{ article.body|truncatewords:30|linebreaks }}
@@ -20,7 +17,7 @@
                     more
                 </a>
             <div class="card-footer text-center text-muted">
-                <span class="text-info">Posted on {{ article.created }}</span>
+                <span class="text-info">by {{ article.author }} | {{ article.age }}</span>
             </div>
     </div>
     <br />

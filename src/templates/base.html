@@ -1,9 +1,6 @@
 {% load bootstrap3 %}
 {# Load CSS and JavaScript #}
 
-{# Display django.contrib.messages as Bootstrap alerts #}
-{% bootstrap_messages %}
-
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -79,7 +76,7 @@
         </nav>
 
 <div class="container-fluid mt-3">
-
+    {# Display django.contrib.messages as Bootstrap alerts #}
     {% bootstrap_messages %}
 
     {% block content %}

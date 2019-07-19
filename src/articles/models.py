@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.contrib.auth.models import User
+from datetime import timedelta, datetime, date
+from django.utils.timesince import timesince
 
 from django.db import models
 from django.urls import reverse
@@ -26,3 +28,18 @@ class Article(models.Model):
                             self.created.month,
                             self.created.day, 
                             self.slug])
+
+    @property
+    def age(self):
+        now = datetime.now()
+        created_time = datetime.combine(
+                            self.created,
+                            datetime.now().min.time()
+                    )
+        try:
+            difference = now - created_time
+        except:
+            return "Unknown"
+        if difference <= timedelta(minutes=1):
+            return 'just now'
+        return '{time} ago'.format(time= timesince(created_time).split(', ')[0])
